@@ -174,23 +174,24 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
 
     setting->addProperty("UUID", "00000000-0000-0000-0000-000000000000");
 
-    setting = &settings.emplace_back(objectServer,
-                                     "/xyz/openbmc_project/software/bios",
-                                     "xyz.openbmc_project.Software.Version");
+    setting = &settings.emplace_back(
+        objectServer, "/xyz/openbmc_project/software/bios_active",
+        "xyz.openbmc_project.Software.Version");
     setting->addProperty("Version", "NA");
     setting->addProperty(
         "Purpose", "xyz.openbmc_project.Software.Version.VersionPurpose.Host");
 
-    setting = &settings.emplace_back(objectServer,
-                                     "/xyz/openbmc_project/software/bios",
-                                     "xyz.openbmc_project.Software.Activation");
+    setting = &settings.emplace_back(
+        objectServer, "/xyz/openbmc_project/software/bios_active",
+        "xyz.openbmc_project.Software.Activation");
     setting->addProperty(
         "Activation",
         "xyz.openbmc_project.Software.Activation.Activations.Active");
 
     std::vector<Association> associations;
-    associations.push_back(Association("functional", "software_version",
-                                       "/xyz/openbmc_project/software/bios"));
+    associations.push_back(
+        Association("functional", "software_version",
+                    "/xyz/openbmc_project/software/bios_active"));
 
     setting =
         &settings.emplace_back(objectServer, "/xyz/openbmc_project/software",
