@@ -338,6 +338,12 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
         "RequestedApplyTime",
         "xyz.openbmc_project.Software.ApplyTime.RequestedApplyTimes.Immediate");
 
+    setting = &settings.emplace_back(objectServer,
+                                     "/xyz/openbmc_project/logging/settings",
+                                     "xyz.openbmc_project.Logging.Settings");
+
+    setting->addProperty("QuiesceOnHwError", false);
+
     for (SettingsInterface &s : settings)
     {
         s.initialize();
