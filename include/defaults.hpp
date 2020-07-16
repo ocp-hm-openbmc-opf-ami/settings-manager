@@ -154,13 +154,12 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
     setting->addProperty(
         "ColdRedundancyStatus",
         "xyz.openbmc_project.Control.PowerSupplyRedundancy.Status.completed");
-    setting->addProperty("ColdRedundancyEnabled", true);
     setting->addProperty("RotationEnabled", true);
     setting->addProperty(
         "RotationAlgorithm",
         "xyz.openbmc_project.Control.PowerSupplyRedundancy.Algo.bmcSpecific");
-    setting->addProperty("RotationRankOrder", std::vector<uint8_t>{0});
-    setting->addProperty("PeriodOfRotation", static_cast<uint32_t>(120));
+    setting->addProperty("RotationRankOrder", std::vector<uint8_t>{1, 2, 3, 4});
+    setting->addProperty("PeriodOfRotation", static_cast<uint32_t>(86400));
 
     setting = &settings.emplace_back(
         objectServer, "/xyz/openbmc_project/control/host0/turbo_allowed",
