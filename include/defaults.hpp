@@ -343,6 +343,15 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
 
     setting->addProperty("QuiesceOnHwError", false);
 
+    setting = &settings.emplace_back(objectServer,
+                                     "/xyz/openbmc_project/pfr/last_events",
+                                     "xyz.openbmc_project.PFR.LastEvents");
+
+    setting->addProperty("lastRecoveryCount", static_cast<uint8_t>(0));
+    setting->addProperty("lastPanicCount", static_cast<uint8_t>(0));
+    setting->addProperty("lastMajorErr", static_cast<uint8_t>(0));
+    setting->addProperty("lastMinorErr", static_cast<uint8_t>(0));
+
     for (SettingsInterface &s : settings)
     {
         s.initialize();
