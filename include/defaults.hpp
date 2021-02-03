@@ -199,7 +199,7 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
         "xyz.openbmc_project.Software.Activation");
     setting->addProperty(
         "Activation",
-        "xyz.openbmc_project.Software.Activation.Activations.Invalid");
+        "xyz.openbmc_project.Software.Activation.Activations.Active");
     setting->addProperty(
         "RequestedActivation",
         "xyz.openbmc_project.Software.Activation.RequestedActivations.None");
