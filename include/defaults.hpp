@@ -150,7 +150,7 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
         objectServer, "/xyz/openbmc_project/control/power_supply_redundancy",
         "xyz.openbmc_project.Control.PowerSupplyRedundancy");
 
-    setting->addProperty("PowerSupplyRedundancyEnabled", true);
+    setting->addProperty("PowerSupplyRedundancyEnabled", false);
     setting->addProperty(
         "ColdRedundancyStatus",
         "xyz.openbmc_project.Control.PowerSupplyRedundancy.Status.completed");
