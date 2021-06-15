@@ -28,4 +28,6 @@ int main()
     std::vector<SettingsInterface> settings;
     loadSettings(objServer, settings);
     io.run();
+
+    return 0;
 }
