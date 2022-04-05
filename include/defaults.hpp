@@ -89,11 +89,7 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
         "PowerRestorePolicy",
         "xyz.openbmc_project.Control.Power.RestorePolicy.Policy.AlwaysOff");
 
-    setting = &settings.emplace_back(
-        objectServer, "/xyz/openbmc_project/control/power_restore_delay",
-        "xyz.openbmc_project.Control.Power.RestoreDelay");
-
-    setting->addProperty("PowerRestoreDelay", static_cast<uint16_t>(0));
+    setting->addProperty("PowerRestoreDelay", static_cast<uint64_t>(0));
 
     setting = &settings.emplace_back(
         objectServer, "/xyz/openbmc_project/control/host0/acpi_power_state",
