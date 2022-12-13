@@ -168,6 +168,12 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
     setting->addProperty("UUID", "00000000-0000-0000-0000-000000000000");
 
     setting = &settings.emplace_back(
+        objectServer, "/com/intel/cooling/mode",
+        "com.intel.Cooling.Mode");
+
+    setting->addProperty("Mode", "Air Cooling Mode");
+
+    setting = &settings.emplace_back(
         objectServer, "/xyz/openbmc_project/software/bios_active",
         "xyz.openbmc_project.Software.Version");
     setting->addProperty("Version", "NA");
