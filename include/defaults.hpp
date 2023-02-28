@@ -174,6 +174,12 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
     setting->addProperty("Mode", "Air Cooling Mode");
 
     setting = &settings.emplace_back(
+        objectServer, "/com/intel/control/vr_Access",
+        "com.intel.Control.vrAccess");
+
+    setting->addProperty("Mode", "Normal");
+
+    setting = &settings.emplace_back(
         objectServer, "/xyz/openbmc_project/software/bios_active",
         "xyz.openbmc_project.Software.Version");
     setting->addProperty("Version", "NA");
