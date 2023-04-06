@@ -178,6 +178,7 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
         "com.intel.Control.vrAccess");
 
     setting->addProperty("Mode", "Normal");
+    setting->addProperty("IsolationInitialState", "Inactive");
 
     setting = &settings.emplace_back(
         objectServer, "/xyz/openbmc_project/software/bios_active",
