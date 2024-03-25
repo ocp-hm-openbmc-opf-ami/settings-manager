@@ -92,6 +92,12 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
     setting->addProperty("PowerRestoreDelay", static_cast<uint64_t>(0));
 
     setting = &settings.emplace_back(
+        objectServer, "/xyz/openbmc_project/control/systemlock",
+        "xyz.openbmc_project.Control.Security.systemLock");
+
+    setting->addProperty("SystemLocked", false);
+
+    setting = &settings.emplace_back(
         objectServer, "/xyz/openbmc_project/control/host0/acpi_power_state",
         "xyz.openbmc_project.Control.Power.ACPIPowerState");
 
