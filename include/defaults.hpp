@@ -229,8 +229,11 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
         "xyz.openbmc_project.Control.Processor.ErrConfig");
 
     setting->addProperty("ResetOnIERR", false);
-    setting->addProperty("AllowResetOnMCERR", true);
+    setting->addProperty("ResetOnMCERR", false);
     setting->addProperty("ResetOnERR2", false);
+    setting->addProperty("CrashdumpOnMCERR", true);
+    setting->addProperty("PostResetCrashdump", false);
+    setting->addProperty("MCERRRecoveryDelayMs", static_cast<uint16_t>(30000));
     setting->addProperty("ErrorCountCPU1", static_cast<uint8_t>(0));
     setting->addProperty("ErrorCountCPU2", static_cast<uint8_t>(0));
     setting->addProperty("ErrorCountCPU3", static_cast<uint8_t>(0));
