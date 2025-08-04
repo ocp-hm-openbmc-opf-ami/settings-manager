@@ -231,7 +231,7 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
     setting->addProperty("ResetOnIERR", false);
     setting->addProperty("ResetOnMCERR", false);
     setting->addProperty("ResetOnERR2", false);
-    setting->addProperty("CrashdumpOnMCERR", true);
+    setting->addProperty("CrashdumpOnMCERR", false);
     setting->addProperty("PostResetCrashdump", false);
     setting->addProperty("MCERRRecoveryDelayMs", static_cast<uint16_t>(30000));
     setting->addProperty("ErrorCountCPU1", static_cast<uint8_t>(0));
