@@ -22,11 +22,10 @@ using Association = std::tuple<std::string, std::string, std::string>;
 // this file is vendor specific, other vendors should replace this file using a
 // bbappend
 
-inline void loadSettings(sdbusplus::asio::object_server &objectServer,
-                         std::vector<SettingsInterface> &settings)
+inline void loadSettings(sdbusplus::asio::object_server& objectServer,
+                         std::vector<SettingsInterface>& settings)
 {
-
-    SettingsInterface *setting = nullptr;
+    SettingsInterface* setting = nullptr;
     setting = &settings.emplace_back(
         objectServer,
         "/xyz/openbmc_project/control/minimum_ship_level_required",
@@ -167,15 +166,14 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
 
     setting->addProperty("UUID", "00000000-0000-0000-0000-000000000000");
 
-    setting = &settings.emplace_back(
-        objectServer, "/com/intel/cooling/mode",
-        "com.intel.Cooling.Mode");
+    setting = &settings.emplace_back(objectServer, "/com/intel/cooling/mode",
+                                     "com.intel.Cooling.Mode");
 
     setting->addProperty("Mode", "Air Cooling Mode");
 
-    setting = &settings.emplace_back(
-        objectServer, "/com/intel/control/vr_Access",
-        "com.intel.Control.vrAccess");
+    setting =
+        &settings.emplace_back(objectServer, "/com/intel/control/vr_Access",
+                               "com.intel.Control.vrAccess");
 
     setting->addProperty("Mode", "Normal");
     setting->addProperty("IsolationInitialState", "Inactive");
@@ -231,7 +229,7 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
     setting->addProperty("ResetOnIERR", false);
     setting->addProperty("ResetOnMCERR", false);
     setting->addProperty("ResetOnERR2", false);
-    setting->addProperty("CrashdumpOnMCERR", true);
+    setting->addProperty("CrashdumpOnMCERR", false);
     setting->addProperty("PostResetCrashdump", false);
     setting->addProperty("MCERRRecoveryDelayMs", static_cast<uint16_t>(30000));
     setting->addProperty("ErrorCountCPU1", static_cast<uint8_t>(0));
@@ -383,7 +381,7 @@ inline void loadSettings(sdbusplus::asio::object_server &objectServer,
     setting->addProperty("lastMajorErr", static_cast<uint8_t>(0));
     setting->addProperty("lastMinorErr", static_cast<uint8_t>(0));
 
-    for (SettingsInterface &s : settings)
+    for (SettingsInterface& s : settings)
     {
         s.initialize();
     }
