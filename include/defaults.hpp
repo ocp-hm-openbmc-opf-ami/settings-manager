@@ -192,19 +192,6 @@ inline void loadSettings(sdbusplus::asio::object_server& objectServer,
         "Activation",
         "xyz.openbmc_project.Software.Activation.Activations.Active");
 
-    setting = &settings.emplace_back(
-        objectServer, "/xyz/openbmc_project/software/rot_fw_active",
-        "xyz.openbmc_project.Software.Version");
-    setting->addProperty("Version", "NA");
-    setting->addProperty(
-        "Purpose", "xyz.openbmc_project.Software.Version.VersionPurpose.Other");
-
-    setting = &settings.emplace_back(
-        objectServer, "/xyz/openbmc_project/software/rot_fw_active",
-        "xyz.openbmc_project.Software.Activation");
-    setting->addProperty(
-        "Activation",
-        "xyz.openbmc_project.Software.Activation.Activations.Active");
     setting->addProperty(
         "RequestedActivation",
         "xyz.openbmc_project.Software.Activation.RequestedActivations.None");
@@ -213,9 +200,6 @@ inline void loadSettings(sdbusplus::asio::object_server& objectServer,
     associations.push_back(
         Association("functional", "software_version",
                     "/xyz/openbmc_project/software/bios_active"));
-    associations.push_back(
-        Association("functional", "software_version",
-                    "/xyz/openbmc_project/software/rot_fw_active"));
 
     setting =
         &settings.emplace_back(objectServer, "/xyz/openbmc_project/software",
