@@ -1,0 +1,1015 @@
+commit 7c8e1ef06aeb846af83b010ed7c877afd8dc0722
+Author: Jason M. Bills <jason.m.bills@intel.com>
+Date:   Mon Apr 13 12:49:04 2026 -0600
+
+    Add option to control crashdump on IERR (#29)
+    
+    The validation team has requested an option to control crashdump on
+    IERR. Putting it here so it matches the crashdump on MCERR option.
+    
+    Tested:
+    Confirmed that this option shows up on D-Bus.
+    
+    Signed-off-by: Jason M. Bills <jason.m.bills@intel.com>
+
+commit c4c2218f49ee04ca5c902f5d8df39505cc02329a
+Author: ABHIST CHAUHAN <chauhanabhist12345@gmail.com>
+Date:   Wed Sep 17 08:38:31 2025 +0530
+
+    Settings Removed (#23)
+    
+    Signed-off-by: abhistchauhan253 <abhist.chauhan@intel.com>
+
+commit 6ea7aef665d78308800be529ef6a0124a69a9efc
+Author: Jason M. Bills <jason.m.bills@intel.com>
+Date:   Mon Aug 4 09:43:03 2025 -0600
+
+    Disable CrashdumpOnMCERR by default (#21)
+    
+    The debug workgroup decided to disable crashdump on MCERR by default and
+    make it an opt-in.
+    
+    Signed-off-by: Jason M. Bills <jason.m.bills@intel.com>
+
+commit 1aadb69aeee03426dcf7bd8d47c3f11a81dcb554
+Author: Terry Duncan <terry.s.duncan@intel.com>
+Date:   Thu May 1 08:44:25 2025 -0700
+
+    Revert license collab (#20)
+    
+    * Revert "According LICENSE-collab.md to intel-collab policy"
+    
+    This reverts commit 6d242c8ccc765cf6b10b0720f53edc68f6b59133.
+    
+    * Revert "According README-collab.md to intel-collab policy"
+    
+    This reverts commit d43b0a459b55fcb3b6bf7e32907a86bf3961272e.
+
+commit 6d242c8ccc765cf6b10b0720f53edc68f6b59133
+Author: sys-1sgithubsupport <sys_1sgithubsupport@intel.com>
+Date:   Fri Apr 25 04:56:59 2025 +0530
+
+    According LICENSE-collab.md to intel-collab policy
+
+commit d43b0a459b55fcb3b6bf7e32907a86bf3961272e
+Author: sys-1sgithubsupport <sys_1sgithubsupport@intel.com>
+Date:   Fri Apr 25 04:56:58 2025 +0530
+
+    According README-collab.md to intel-collab policy
+
+commit c12e8c5e5512348e186712c6bf2a7dd1b3d11d2f
+Author: Jason M. Bills <jason.m.bills@intel.com>
+Date:   Wed Apr 23 07:53:03 2025 -0600
+
+    Update to C++23 (#19)
+    
+    Update to C++23 which is required for sdbusplus
+    
+    Signed-off-by: Jason M. Bills <jason.m.bills@intel.com>
+
+commit 24560fe1ff5dd6fadd3e6cb1906a42e02528cd41
+Author: Jason M. Bills <jason.m.bills@intel.com>
+Date:   Thu May 30 12:15:58 2024 -0600
+
+    Add settings for OKS crashdump flow (#18)
+    
+    This adds the following settings to support the new OKS crashdump flow:
+    ResetOnMCERR now drives reset instead of unblocking and is disabled by
+    default.
+    CrashdumpOnMCERR is now enabled by default.
+    PostResetCrashdump controls post-reset ACD and is disabled by default.
+    MCERRRecoveryDelayMs controls how long to wait for IERR after an MCERR
+    and is set to 30s by default.
+    
+    Signed-off-by: Jason M. Bills <jason.m.bills@intel.com>
+
+commit b58a1339cadf6f2601b86b5ebc1432fe2d9307e1
+Author: Jason M. Bills <jason.m.bills@intel.com>
+Date:   Fri Nov 17 12:26:54 2023 -0700
+
+    Update LICENSE (#12)
+    
+    Update LICENSE with full text
+
+commit f147002a5afa4a7967788d3d7d82c5160a43972a
+Author: jmbills <jason.m.bills@intel.com>
+Date:   Tue Sep 12 15:45:12 2023 -0600
+
+    Add a configuration option to allow reset on MCERR (#14)
+    
+    MCERR is another type of error that can be recovered by a reset. This
+    adds a configuration option to control if the BMC will allow that
+    recovery.
+    
+    Tested:
+    Injected an MCERR and confirmed that when this option is true, recovery
+    is enabled. When this option is false, recovery is blocked.
+    
+    Signed-off-by: Jason M. Bills <jason.m.bills@intel.com>
+
+commit 2c2eccf571e25e5794bb793fb1b538b060dcc50e
+Author: jmbills <jasonm.bills@yahoo.com>
+Date:   Tue Sep 12 14:42:26 2023 -0600
+
+    Rename CATERR to IERR (#13)
+    
+    CATERR is ambiguous because it represents two types of errors: IERR and MCERR. This
+    changes the name to IERR to be more specific.
+    
+    Signed-off-by: Jason M. Bills <jason.m.bills@intel.com>
+
+commit 07b2047f93f0182647da41fd5e802c6f4d1405e7
+Author: ankita prasad <ankita.prasad@intel.com>
+Date:   Tue Aug 22 20:55:44 2023 +0530
+
+    Update cpld_active to ROT_Firmware (#11)
+    
+    * Update cpld_active to ROT_Firmware
+    
+    The PFR CPLD URI is modified to /redfish/v1/UpdateService/FirmwareInventory/ROT_Firmware.
+    
+    Tested: Flashed BMC with the changes.
+    Able to getch the CPLD Version on Redfish.
+    
+    {
+        "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/ROT_Firmware",
+        "@odata.type": "#SoftwareInventory.v1_1_0.SoftwareInventory",
+        "Description": "Other image",
+        "Id": "ROT_Firmware",
+        "Name": "Software Inventory",
+        "Status": {
+            "Health": "OK",
+            "HealthRollup": "OK",
+            "State": "Enabled"
+        },
+        "Updateable": false,
+        "Version": "3.0-0bbd19caa386faaa5802f21bc90ca557090413a788f9d098d5b346f08055c205"
+    }
+    
+    Signed-off-by: Ankita Prasad <ankita.prasad@intel.com>
+
+commit 17ca59c5cef05ec054ab79fe149fd96f2f9dcbf9
+Author: jmbills <jasonm.bills@yahoo.com>
+Date:   Thu Jun 29 09:48:06 2023 -0600
+
+    Use variable for service install location (#10)
+    
+    After enabling 'usrmerge', the install location for systemd service
+    files changed. This uses a variable to get the installation location
+    instead of hardcoding it.
+    
+    Tested:
+    Confirmed that with 'usrmerge' enabled, the service file is correctly
+    installed.
+    
+    Signed-off-by: Jason M. Bills <jason.m.bills@intel.com>
+
+commit 72a1e75317fafe8b8f4771554a40a1ca30365f78
+Author: Vernon Mauery <vernon.mauery@intel.com>
+Date:   Thu Apr 6 14:13:27 2023 -0700
+
+    Add com.intel.Control.vrAccess IsolationInitialState (#9)
+    
+    VR Isolation has two parts. Which mechanism is used to monitor VR
+    sensors (Mode) chooses between dbus-sensors and vr-monitor. Once
+    vr-monitor is chosen, the IsolationInitialState setting is used to
+    determine if it should immediately start scanning or not.  This allows
+    the external vr-telemetry to know that upon BMC reboot, the system will
+    be staying off the VR pmbus to not disrupt external communications.
+    
+    Tested: When IsolationInitialState is set to "Active", vr-manager loads
+            and does not start sensor scanning. When IsolationInitialState
+            is set to "Inactive", vr-manager loads and starts scanning the
+            VR sensors.
+    
+    Signed-off-by: Vernon Mauery <vernon.mauery@intel.com>
+
+commit b64a7421e228fffe1fe0fbe11f0cde1df0e9f375
+Author: Zhikui Ren <zhikui.ren@intel.com>
+Date:   Mon Feb 27 16:25:00 2023 -0800
+
+    Add VR Mode settings (#8)
+    
+    Add a new settings for VR sensors management mode.
+    "Normal" means that vr isolation is not available, vr-manager is
+    disabled and dbus-sensors service scans for VR sensors.
+    "IsolationAvail"  means that vr isolation is available, vr-manager is
+    enabled, vr-manager service scans for VR sensors.
+    
+    Signed-off-by: Zhikui Ren <zhikui.ren@intel.com>
+
+commit 83fbed3eb4a460d53dc0a416d88fe75a7828ffeb
+Author: Ankita Gawade <ankita.gawade@intel.com>
+Date:   Tue Dec 13 10:17:48 2022 +0530
+
+    Add Cooling Mode Setting (#7)
+    
+    * Add Cooling Mode Setting
+    
+    This commit adds support to create cooling mode property
+    
+    Tested:
+    
+    busctl get-property
+    xyz.openbmc_project.Settings /xyz/openbmc_project/cooling/mode
+    xyz.openbmc_project.Cooling.Mode Mode
+    s "Air Cooling Mode
+    
+    Signed-off-by: Ankita Vilas Gawade <ankita.gawade@intel.com>
+
+commit 5428fc73988ed956eb6930299da6edd654321f11
+Author: Terry Duncan <terry.s.duncan@intel.com>
+Date:   Fri Nov 18 10:27:59 2022 -0800
+
+    Revert "Change to approved license for downstream recipes (#5)"
+    
+    This reverts commit e2ab470eeac73e0760e4b81b7c776f576cce11ce.
+    Later decision to leave as Apache
+    Signed-off-by: Terry S. Duncan terry.s.duncan@intel.com
+
+commit e2ab470eeac73e0760e4b81b7c776f576cce11ce
+Author: Terry Duncan <terry.s.duncan@intel.com>
+Date:   Fri Oct 21 14:17:44 2022 -0700
+
+    Change to approved license for downstream recipes (#5)
+    
+    Changed Apache license to approved license for downstream.
+    
+    Signed-off-by: Terry S. Duncan <terry.s.duncan@intel.com>
+    Co-authored-by: jmbills <jasonm.bills@yahoo.com>
+
+commit 2f3645f469addcc4451531e02d517ef957b0acf2
+Author: Vernon Mauery <vernon.mauery@linux.intel.com>
+Date:   Fri Oct 7 08:23:34 2022 -0700
+
+    use c++20 standard (#4)
+    
+    Signed-off-by: Vernon Mauery <vernon.mauery@intel.com>
+
+commit d19a19df3bb0388dd64b1393f2643cc48017059c
+Author: jmbills <jasonm.bills@yahoo.com>
+Date:   Tue Apr 5 11:32:20 2022 -0600
+
+    Update power restore delay type and interface (#3)
+    
+    Upstream moved the power restore delay into the power restore
+    policy interface and changed it to a uint64_t in microseconds.
+    
+    This updates the interface and type to match.
+    
+    Tested:
+    Confirmed that power restore delay still works when combined with
+    the updates in intel-ipmi-oem and x86-power-control.
+    
+    Signed-off-by: Jason M. Bills <jason.m.bills@intel.com>
+
+commit 85a8be9a3fb8ef4726899b28f10fb9afa6fa9e89
+Author: Basheer Ahmed Muddebihal <basheerx.muddebihal@intel.com>
+Date:   Mon Aug 9 12:37:20 2021 -0700
+
+    Fix settings interface for boot source override
+    
+    Added the redesigned properties BootType and ObjectEnable properties
+    to downsteam settings interface. References to the changes to support
+    boot override parameters and design of settings interface can be found
+    https://gerrit.openbmc-project.xyz/c/openbmc/openbmc/+/44226
+    
+    the boot source override feature design was changed from the
+    ```
+    /xyz/openbmc_project/control/host0/boot:
+        - Interface: xyz.openbmc_project.Control.Boot.Source
+        - Interface: xyz.openbmc_project.Control.Boot.Mode
+        - Interface: xyz.openbmc_project.Control.Boot.Type
+    /xyz/openbmc_project/control/host0/boot/one_time:
+        - Interface: xyz.openbmc_project.Control.Boot.Source
+        - Interface: xyz.openbmc_project.Control.Boot.Mode
+        - Interface: xyz.openbmc_project.Control.Boot.Type
+        - Interface: xyz.openbmc_project.Object.Enable
+    ```
+    to
+    ```
+    /xyz/openbmc_project/control/host0/boot:
+         - Interface: xyz.openbmc_project.Control.Boot.Source
+         - Interface: xyz.openbmc_project.Control.Boot.Mode
+         - Interface: xyz.openbmc_project.Control.Boot.Type
+         - Interface: xyz.openbmc_project.Object.Enable
+    /xyz/openbmc_project/control/host0/boot/one_time:
+         - Interface: xyz.openbmc_project.Object.Enable
+    
+    Tested:
+    busctl introspect xyz.openbmc_project.Settings
+    /xyz/openbmc_project/control/host0/boot/one_time
+    
+    busctl introspect xyz.openbmc_project.Settings
+    /xyz/openbmc_project/control/host0/boot
+    
+    https://<ip_addr>/redfish/v1/Systems/system  returns the valid 200
+    
+    Change-Id: Ie64db7f89c07e6b558984c67858ae16784fb7423
+    Signed-off-by: Basheer Ahmed Muddebihal <basheerx.muddebihal@intel.com>
+
+commit 1a39605ff52db92048df733181eda8fcfe18ce2f
+Author: Jason M. Bills <jason.m.bills@linux.intel.com>
+Date:   Tue Jun 15 06:53:43 2021 -0700
+
+    Fix Klocwork issue
+    
+    Change-Id: I3a424c4dc312de21ec47680981060f78100c8061
+    Signed-off-by: Jason M. Bills <jason.m.bills@linux.intel.com>
+
+commit 1bdbb05873b5790bd56b683ce8ddf1a02a6795e7
+Author: mansijos <mansi.joshi@intel.com>
+Date:   Thu Feb 11 22:34:20 2021 +0530
+
+    Disable PSU cold redundancy default status
+    
+    In RP platforms, single PSU also considered as valid configuration.
+    So its init value should be disabled by default to avoid issues
+    in RP platforms.
+    
+    This avoids unwanted critical event logs for RP platforms where
+    single PSU also considered as valid config.
+    
+    Tested:
+    Rebooted BMC and observed no CR event logs.
+    
+    Change-Id: I2ed84bf3e60e4f5645d5c68a09673406e61672e0
+    Signed-off-by: mansijos <mansi.joshi@intel.com>
+
+commit 9460ff5b704e534d0e242eeb0302338a8704b0e6
+Author: Chalapathi Venkataramashetty <chalapathix.venkataramashetty@intel.com>
+Date:   Wed Feb 3 14:09:38 2021 +0000
+
+    settings: change cpld_active activation status to active.
+    
+    Add support to modify the cpld_activation status from
+    xyz.openbmc_project.Software.Activation.Activations.Invalid to
+    xyz.openbmc_project.Software.Activation.Activations.Active
+    
+    Tested:
+    Command: busctl get-property xyz.openbmc_project.Settings
+    /xyz/openbmc_project/software/cpld_active xyz.openbmc_project.Software.
+    Activation "Activation"
+    Response:
+    s "xyz.openbmc_project.Software.Activation.Activations.Active"
+    
+    Change-Id: I915f01c18276e6c7c8176636ce9b71962818ca25
+    Signed-off-by: Chalapathi Venkataramashetty <chalapathix.venkataramashetty@intel.com>
+
+commit 946ac7669602d5660310e8609f500dadf16bb16d
+Author: Chalapathi Venkataramashetty <chalapathix.venkataramashetty@intel.com>
+Date:   Tue Jan 12 17:50:35 2021 +0000
+
+    settings: add cpld_active version object to settings
+    
+    Add support to create cpld_actve object
+    /xyz/openbmc_project/software/cpld_active to hold cpld_active version
+    and is updated in pfr-manager. Implemented in below patch.
+    https://gerrit.openbmc-project.xyz/c/openbmc/pfr-manager/+/36522
+    
+    Tested:
+    Command: busctl introspect xyz.openbmc_project.Settings
+    /xyz/openbmc_project/software/cpld_active
+    Response:
+    NAME                                    TYPE     SIGNATURE RESULT/VALUE
+    xyz.openbmc_project.Software.Activation interface -         -
+    .Activation                             property  s
+    "xyz.openbmc_project.Software.Activatio… emits-change writable
+    .RequestedActivation                    property  s
+    "xyz.openbmc_project.Software.Activatio… emits-change writable
+    xyz.openbmc_project.Software.Version    interface -         -
+    .Purpose                                property  s
+    "xyz.openbmc_project.Software.Version.V… emits-change writable
+    .Version                                property  s
+    "0.7-1.0-8675b80f7c90e9163f19b6af2351e3… emits-change writable
+    
+    Command: busctl get-property xyz.openbmc_project.Settings
+    /xyz/openbmc_project/software/cpld_active xyz.openbmc_project.Software.
+    Activation "Activation"
+    Response:
+    s "xyz.openbmc_project.Software.Activation.Activations.Invalid"
+    
+    Command: busctl get-property xyz.openbmc_project.Settings
+    /xyz/openbmc_project/software/cpld_active xyz.openbmc_project.Software.
+    Activation "RequestedActivation"
+    Response:
+    s "xyz.openbmc_project.Software.Activation.RequestedActivations.None"
+    
+    Activation updated to active in pfr-manager.
+    Command: busctl get-property xyz.openbmc_project.PFR.Manager
+    /xyz/openbmc_project/software/cpld_active xyz.openbmc_project.Software.
+    Activation "Activation"
+    Response:
+    s "xyz.openbmc_project.Software.Activation.Activations.Active"
+    
+    Commnd:
+    GET: https://<BMC_IP>/redfish/v1/UpdateService/FirmwareInventory/
+         cpld_active
+    {
+        "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/
+                      cpld_active",
+        "@odata.type": "#SoftwareInventory.v1_1_0.SoftwareInventory",
+        "Description": "Other image",
+        "Id": "cpld_active",
+        "Name": "Software Inventory",
+        "Status": {
+            "Health": "OK",
+            "HealthRollup": "OK",
+            "State": "Enabled"
+        },
+        "Updateable": false,
+        "Version": "0.7-1.
+        0-8675b80f7c90e9163f19b6af2351e3c231f4d154b5f031442b6c3d9777671694"
+    }
+    
+    Change-Id: I829c2288104b1133b96b93ef137ccc06d0fef7cc
+    Signed-off-by: Chalapathi Venkataramashetty <chalapathix.venkataramashetty@intel.com>
+
+commit 4879d875dc197a19e15227f45630a409a52330c4
+Author: Chalapathi Venkataramashetty <chalapathix.venkataramashetty@intel.com>
+Date:   Thu Oct 8 09:45:09 2020 +0000
+
+    settings: add last events PFR object to settings
+    
+    Add support to create last events object
+    /xyz/openbmc_project/pfr/last_events and interface
+    xyz.openbmc_project.PFR.LastEvents to hold the previous event count
+    persistently so that they are available even after BMC reset and
+    PFR-Manager service restart.
+    
+    These values are read and updated in PFR-manager and changes are
+    implemented in below patch.
+    https://gerrit.openbmc-project.xyz/#/c/openbmc/pfr-manager/+/37220/
+    
+    Tested:
+    Command: busctl introspect xyz.openbmc_project.Settings
+             /xyz/openbmc_project/pfr/last_events
+    Response:
+    NAME                                TYPE   SIGNATURE RESULT/VALUE FLAGS
+    [[0;1;39morg.freedesktop.DBus.Introspectable[[0m interface -         -
+    NAME                                TYPE   SIGNATURE RESULT/VALUE FLAGS
+    [[0;1;39morg.freedesktop.DBus.Introspectable[[0m interface -         -
+    .Introspect                         method    -         s            -
+    [[0;1;39morg.freedesktop.DBus.Peer          [[0m interface -         -
+    .GetMachineId                       method    -         s            -
+    .Ping                               method    -         -            -
+    [[0;1;39morg.freedesktop.DBus.Properties    [[0m interface -         -
+    .Get                                method    ss        v            -
+    .GetAll                             method    s         a{sv}        -
+    .Set                                method    ssv       -            -
+    .PropertiesChanged                  signal    sa{sv}as  -            -
+    [[0;1;39mxyz.openbmc_project.PFR.LastEvents [[0m interface -         -
+    .lastMajorErr                       property  y         0
+    emits-change writable
+    .lastMinorErr                       property  y         0
+    emits-change writable
+    .lastPanicCount                     property  y         0
+    emits-change writable
+    .lastRecoveryCount                  property  y         0
+    emits-change writable
+    
+    Change-Id: I91c7f63d99711abb3e65eb52c050c9e7d3de59c0
+    Signed-off-by: Chalapathi Venkataramashetty <chalapathix.venkataramashetty@intel.com>
+
+commit 5d2150656d23412c59acd4da7b9f155902f089d9
+Author: Kuiying Wang <kuiying.wang@intel.com>
+Date:   Thu Jul 16 19:31:54 2020 +0800
+
+    Correct default value for cold redundancy.
+    
+    According to the EPS:
+    Minimum Rotation period is 1 day (86400 seconds).
+    Less than 1 day is invalid
+    Maximum Rotation period is 6 months.
+    Max PSU number is 4.
+    
+    Tested:
+    Cold redundancy is working well.
+    
+    Change-Id: Ia9a1e6283f53a6e2ec8d89c15e8c5ec70da38571
+    Signed-off-by: Kuiying Wang <kuiying.wang@intel.com>
+
+commit cf55f85c9cd676736356f06fc47a7e98abd297f3
+Author: James Feist <james.feist@linux.intel.com>
+Date:   Fri Jun 26 15:51:08 2020 -0700
+
+    Add logging setting
+    
+    Phosphor-logging requires this setting or sometimes
+    throws.
+    
+    Tested: Fwupdate with bad image stopped throwing
+    
+    Change-Id: If8a9e199c69dfcdf51a8c91d81f8437acb0469d0
+    Signed-off-by: James Feist <james.feist@linux.intel.com>
+
+commit 2d5cec69d0c72df976fa11086749d4ebb478d25b
+Author: Chalapathi <chalapathix.venkataramashetty@intel.com>
+Date:   Wed Apr 15 14:49:57 2020 +0000
+
+    fix for redundant bmc_active, bios info in redfish
+    
+    Issue: bmc_active and bios information is redundant under redfish
+    FirmwareInventory.
+    
+    Fix:
+    1. Removed bmc_active and bios_active from verComponentList in
+    intel-pfr-manager
+    2. Modified the biosObjectPath from bios to bios_active in settings
+    service.
+    
+    Tested:
+    Request:
+    GET: https://<BMC_IP>/redfish/v1/UpdateService/FirmwareInventory/
+    
+    Response:
+    {
+    "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory",
+    "@odata.type": "#SoftwareInventoryCollection.SoftwareInventoryCollection",
+    "Members": [
+      {
+       "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/
+                        bios_active"
+      },
+      {
+       "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/
+                     bios_recovery"
+      },
+      {
+       "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/bmc_active"
+      },
+      {
+       "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/
+                     bmc_recovery"
+      },
+      {
+        "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/
+                     cpld_active"
+      },
+      {
+        "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/
+                      cpld_recovery"
+      },
+      {
+        "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/me"
+      }
+     ],
+      "Members@odata.count": 7,
+      "Name": "Software Inventory Collection"
+    }
+    
+    Change-Id: I6969741a9d99988061ab5e165dbae2433dc76320
+    Signed-off-by: Chalapathi <chalapathix.venkataramashetty@intel.com>
+
+commit d16294b808e29fa12e901a3e89d45d9f8bdb2fbf
+Author: Karthick Sundarrajan <karthick.sundarrajan@intel.com>
+Date:   Mon Nov 25 12:17:26 2019 -0800
+
+    Change the CapabilitiesFlags property into booleans
+    
+    Each bit in CapabilitiesFlags dbus property is a chassis
+    capability. Setting a capability overwrites other capabilities.
+    Read-and-update of the property results in race condition/confusion.
+    To tackle this, added a boolean property for each of chassis
+    capability. The new properties will be read and updated in ipmi
+    command handling code.
+    
+    The capabilities listed below are supported by Intel and so enabled
+    the corresponding bits/properties by default.
+    1. Intrusion sensor (bit 0)
+    2. Front panel lockout (bit 1)
+    3. NMI (bit 2)
+    
+    The original CapabilitiesFlags property will be deprecated once the
+    changes are made to use new booleans in all the repos.
+    
+    Tested:
+    ------
+    
+    root@intel-obmc:~# ipmitool raw 0x00 0x00
+     07 22 44 66 88 aa
+    
+    Change-Id: I7f9ec00c1bf94d550dd000634011ef8e7a460967
+    Signed-off-by: Karthick Sundarrajan <karthick.sundarrajan@intel.com>
+
+commit c069ab152ad76614f636f002c5b7f17538d0a4d0
+Author: Yong Li <yong.b.li@linux.intel.com>
+Date:   Thu Feb 13 20:56:43 2020 +0800
+
+    Increase the timeout value to fix netipmid crash issue during stress test
+    
+    During stress test, netipmid service will crash with "bad executor" error,
+    the current Character Accumulate Interval is too small,
+    after increase it to 100, no more crash issue.
+    
+    Tested:
+    Start "ipmitool sel list", "ipmitool sensor list"
+    and "ipmitool sol looptest 200 500" at the same time,
+    no "sol looptest fail" error
+    
+    Change-Id: Idf8ba1fdc3478bda408cf668f671411a02574b68
+    Signed-off-by: Yong Li <yong.b.li@linux.intel.com>
+
+commit 090e4eb791da9e6c59cbe184946515bf26e10283
+Author: Yong Li <yong.b.li@linux.intel.com>
+Date:   Wed Dec 18 19:46:50 2019 +0800
+
+    Change the bios version dbus interface to align with bmcweb
+    
+    bmcweb uses the software interface for bios version query in redfish,
+    to align with it, the settings service implements the software interface,
+    this reference needs to be changed too
+    
+    Tested:
+    AC cycle the host, BiosVersion is the correct bios version:
+    https://$BMCIP/redfish/v1/Systems/system
+    
+    Change-Id: I619de9ff1a2356b7da1c59cfa139344cc2114eeb
+    Signed-off-by: Yong Li <yong.b.li@linux.intel.com>
+
+commit c8ff039e183cf35bc480088ed52a32a4817a4802
+Author: Yong Li <yong.b.li@linux.intel.com>
+Date:   Fri Dec 13 17:38:20 2019 +0800
+
+    Implement Software interface to support bios version in redfish
+    
+    bmcweb uses the Software.Activation interface to query the bios version,
+    implement the Software.Activation
+    and Association.Definitions to support the query.
+    
+    Tested:
+     https://$BMCIP/redfish/v1/Systems/system contains the BiosVersion:
+    "BiosVersion": "NA",
+    
+    Change-Id: I77fdefc5962bfc7715b125ccfec0ec57e9dd0f55
+    Signed-off-by: Yong Li <yong.b.li@linux.intel.com>
+
+commit 7f66aed1e27aa33637e45c6a7479d2e075a86087
+Author: Vikram Bodireddy <vikram.bodireddy@linux.intel.com>
+Date:   Thu Dec 5 15:05:49 2019 +0530
+
+    Adding RequestedApplyTime property to settings
+    
+    Added "RequestedApplyTime" to settings service which
+    will be used in firmware update. This will give option
+    for user to set the firmware image activation like
+    activate image 'Immediate' or Activate image on 'OnReset'
+    etc.
+    
+    Tested:
+    Changed the setting using Redfish, rebooted BMC and
+    validated the preserved 'RequestedApplyTime' setting.
+    
+    Change-Id: Ib08bb82fcc651f5489d69928ddaa7e1f05ebfdcf
+    Signed-off-by: Vikram Bodireddy <vikram.bodireddy@linux.intel.com>
+
+commit 5a78983288dad4bdd0297e524a668a68592f2b80
+Author: James Feist <james.feist@linux.intel.com>
+Date:   Mon Dec 2 14:35:54 2019 -0800
+
+    settings: match upstream service name
+    
+    Match it so the waits on things are the same.
+    
+    Tested: name changed
+    
+    Change-Id: I88171677a39d8a36fd2976122fe4f725b029735e
+    Signed-off-by: James Feist <james.feist@linux.intel.com>
+
+commit e27581ec28b8271057795560210d77853371e6b7
+Author: James Feist <james.feist@linux.intel.com>
+Date:   Mon Dec 2 16:35:40 2019 -0800
+
+    Make SOL progess not persist
+    
+    This gets initialized in IPMI to 0 every boot anyways,
+    might as well just make it not persist.
+    
+    Tested: Doesn't persist
+    
+    Change-Id: I068cc0fc48533f334752da68d8f51b208cfdbe48
+    Signed-off-by: James Feist <james.feist@linux.intel.com>
+
+commit 9d467d102455d0cfd9e8b065d174658eefd44028
+Author: James Feist <james.feist@linux.intel.com>
+Date:   Mon Nov 11 11:23:14 2019 -0800
+
+    Fix Settings Vector Problem
+    
+    {} only initalizes the std::optional, not the thing
+    in the optional. Intialize it correctly.
+    
+    Tested: Warnings went away, on reboot changes persisted
+    
+    Change-Id: I3c40317f077d241f0dc938910a28876f911d8021
+    Signed-off-by: James Feist <james.feist@linux.intel.com>
+
+commit 797241fd8474f81e26c50e7dc1c0b1a6497f157b
+Author: Chen Yugang <yugang.chen@linux.intel.com>
+Date:   Wed Oct 30 08:28:45 2019 +0800
+
+    Move NMI source Property from intel-dbus-interface to phospher-dbus-interfaces
+    
+    System needs to keep the NMI signal event source by this Property, this
+    interface is used to support the access the Property with default value.
+    it's convenient for other repos to use it by moving from "com.intel" to
+    "xyz.openbmc_project".
+    
+    Tested
+    it's tested in system for IPMI OEM command - get/set NMI source
+    
+    Change-Id: I2df4e577eff30b4a82b2face0c6dead2a20a6e2d
+    Signed-off-by: Chen Yugang <yugang.chen@linux.intel.com>
+
+commit 692a85eac2de625a1b2d68a403d5748ec30c98e3
+Author: Jason M. Bills <jason.m.bills@linux.intel.com>
+Date:   Fri Oct 11 12:52:43 2019 -0700
+
+    Add a LICENSE file for this recipe
+    
+    Change-Id: Ib76f920c16519d25bbfa93281445104cbe8a290e
+    Signed-off-by: Jason M. Bills <jason.m.bills@linux.intel.com>
+
+commit 6734e32a5766b48adbf3675f02e27d90f10f3385
+Author: Jason M. Bills <jason.m.bills@linux.intel.com>
+Date:   Thu Sep 19 14:01:06 2019 -0700
+
+    Remove RestartCause setting
+    
+    RestartCause is handled by power-control, so remove it from
+    settings.
+    
+    Tested:
+    Combined with the power-control changes, triggered software, command,
+    button, watchdog, and power restore restart types and confirmed that
+    the restart cause was correctly reported.
+    
+    Change-Id: I748c70749bdb7169e483758e6af7a58fef2319a5
+    Signed-off-by: Jason M. Bills <jason.m.bills@linux.intel.com>
+
+commit f7e2858345452e382a476979f8c62d9fe6861ec3
+Author: Jason M. Bills <jason.m.bills@linux.intel.com>
+Date:   Fri Aug 16 12:44:46 2019 -0700
+
+    Add setting for ResetOnSMI option
+    
+    Tested:
+    Combined with the IPMI command, confirmed that when I enable
+    and disable reset on SMI, the value is correctly stored in
+    the setting.
+    
+    Change-Id: I83be31b9edb4758639ab1e242752ae38ef180085
+    Signed-off-by: Jason M. Bills <jason.m.bills@linux.intel.com>
+
+commit c322122b987ce5c4e2d63ec009ff06aebc620ea5
+Author: James Feist <james.feist@linux.intel.com>
+Date:   Thu Aug 8 14:27:09 2019 -0700
+
+    Add log api enabled property
+    
+    This enables rest api logs
+    
+    Tested:
+    https://gerrit.openbmc-project.xyz/c/openbmc/bmcweb/+/22699
+    
+    Change-Id: Idbdf460ab1655f0d9c3d7a1eded99b3f30f133b4
+    Signed-off-by: James Feist <james.feist@linux.intel.com>
+
+commit 37f445286863781e1139b22bec719e09888fdaa1
+Author: Chen Yugang <yugang.chen@linux.intel.com>
+Date:   Wed Aug 7 23:01:23 2019 +0800
+
+    Change NMISource Enabled default value
+    
+    NMISourse should be disabled as default, and enabled by NMISource signal
+    
+    tested
+    test by NMI Button and NMISources by OEM command.
+    
+    Change-Id: I920f4610a02f29818e75d43cd042c3ce1aa0b0a5
+    Signed-off-by: Chen Yugang <yugang.chen@linux.intel.com>
+
+commit 3487daef26e9a5d55cdbe6ef32e093de5d9336a8
+Author: Cheng C Yang <cheng.c.yang@intel.com>
+Date:   Tue Jul 30 09:52:08 2019 +0800
+
+    Add Cold Redundancy Configs to settings
+    
+    Add Cold Redundancy configs to settings, so that these configs will not reset
+    to default after AC cycle.
+    
+    Tested:
+    Change properties ColdRedundancyEnabled, ColdRedundancyStatus, PeriodOfRotation
+    RotationAlgorithm, RotationEnabled, RotationRankOrder by ipmi or redfish
+    commands, do an AC cycle, use ipmi or redfish commands to get these properties
+    again, the properties value is not reset to default.
+    
+    Change-Id: Iba8a82d4bf31ceeabf53c0c5f87705133dee18b0
+    Signed-off-by: Cheng C Yang <cheng.c.yang@intel.com>
+
+commit 23e86a93d44a0a24c0a3537501a1a65aa193c5bd
+Author: James Feist <james.feist@linux.intel.com>
+Date:   Wed Jul 24 12:44:34 2019 -0700
+
+    Add setting for dimm offset
+    
+    Add setting to be used by dimm offset
+    
+    Tested: Used dimm offset ipmi command to set setting
+    
+    Change-Id: I82e2df30c2093b84756b1cb50360b77940fc408c
+    Signed-off-by: James Feist <james.feist@linux.intel.com>
+
+commit d136cd3e0186818717faf3d47b3129e935ce93f5
+Author: Yong Li <yong.b.li@linux.intel.com>
+Date:   Mon Jul 22 18:45:24 2019 +0800
+
+    Add host POH Counter support
+    
+    Add the 32-bit POHCounter into settings,
+    it is used to store the host power on hours.
+    
+    Tested:
+    Run “Ipmitool chassis poh” command without errors
+    
+    Change-Id: I97fa8abdc10d72afb57f870a398f5f9abd5830ef
+    Signed-off-by: Yong Li <yong.b.li@linux.intel.com>
+
+commit 7fbbea8b45c729bd63ca3c9ca7d02c43cb9f2b55
+Author: Chen Yugang <yugang.chen@linux.intel.com>
+Date:   Mon Jul 15 18:31:26 2019 +0800
+
+    Fix issue: set/get system boot options command
+    
+    issue: set/get system boot options command return 0xff.
+    This IPMI command set/get system boot options commands
+    worked fine before. After default.yaml has been
+    removed and used default.hpp instead, it runs into issue
+    because some Properties related with boot options are
+    missed in default.hpp while transferring from default.YAML
+    to default.hpp.
+    Now add these Properties to default.hpp, it works fine.
+    
+    tested
+    test by IPMI set/get system boot options commands
+    set boot option:
+    ipmitool raw 0x00 0x08 0x05 0x80 0x18 0x00 0x00 0x00
+    get boot option:
+    ipmitool raw 0x00 0x09 0x05 0x00 0x00
+    
+    Change-Id: I465ae877fb6c906144127fb0932088cca4aca70d
+    Signed-off-by: Chen Yugang <yugang.chen@linux.intel.com>
+
+commit 1983c36dbb0a55468b95d19d35af0c6968de5336
+Author: James Feist <james.feist@linux.intel.com>
+Date:   Tue Jul 9 08:35:14 2019 -0700
+
+    Fix settings for conflicts with folders
+    
+    Folder names cannot be the same as file names or we
+    will get conflicts.
+    
+    Tested: settingsd no longer had issues on efe3
+    
+    Change-Id: I057358b8a6f8a0ec98c177be8d7396d726438cc4
+    Signed-off-by: James Feist <james.feist@linux.intel.com>
+
+commit 7f85e77795e7c281b089394e354d3074c9d844e6
+Author: Jason M. Bills <jason.m.bills@linux.intel.com>
+Date:   Fri Jun 28 16:50:18 2019 -0700
+
+    Add settings for Processor Error Config
+    
+    This adds the settings needed for the Processor Error Config.
+    
+    It stores the CATERR and ERR2 reset configuration and the current
+    count of CATERRs for each CPU and total crashdumps.
+    
+    Tested:
+    Verified that the settings are available on DBus.
+    
+    Combined with the IPMI change, verified that the Get and Set
+    Processor Error Config commands can get the data and update the
+    reset configuration both from IPMI directly and from BIOS setup.
+    
+    Change-Id: I659ec31f59251c03cfd34a19fd0b1c5e20487d48
+    Signed-off-by: Jason M. Bills <jason.m.bills@linux.intel.com>
+
+commit 1b5b01f0e333ea4eb39a4397aa4412420c0a0fc8
+Author: Jason M. Bills <jason.m.bills@linux.intel.com>
+Date:   Tue Jun 25 11:34:29 2019 -0700
+
+    Add a setting for AC Boot status
+    
+    This adds a setting that defaults to "Unknown" and is updated to
+    "True" or "False" based on the boot status provided by u-boot on
+    the command line.
+    
+    Tested:
+    Verified that the AC Boot setting is created with the default value
+    of "Unkown" on each boot.
+    
+    Combined with the AC Boot check change, this makes the power
+    restore policy behave as expected.
+    
+    Change-Id: I6358956464a71078fd8e3ff989a6fcf0b17b1028
+    Signed-off-by: Jason M. Bills <jason.m.bills@linux.intel.com>
+
+commit 96f06a75c463e3b461a1f83a3161f315f6781995
+Author: Richard Marian Thomaiyar <richard.marian.thomaiyar@linux.intel.com>
+Date:   Tue Jun 18 00:30:04 2019 +0530
+
+    Remove restriction_mode from Settings daemon
+    
+    RestrictionMode property will be managed by prov-mode-mgr
+    and hence need to remove it from settings daemon.
+    
+    Change-Id: Ifaf693c1c21226cad9ec84dd992d678ccd83f2f6
+    Signed-off-by: Richard Marian Thomaiyar <richard.marian.thomaiyar@linux.intel.com>
+
+commit 91633c5bab194680702f1564af8607a6a2039f0c
+Author: Cheng C Yang <cheng.c.yang@intel.com>
+Date:   Thu Jun 27 18:02:18 2019 +0800
+
+    Add SOL Channel Support to Settings
+    
+    Add SOL channel support sol eth0, sol eth1, sol eth2 to phosphor-settings, so
+    that phosphor-settings can store different channel config for SOL.
+    
+    Tested:
+    SOL configuration are stored in xyz.openbmc_project.Settings
+    path /xyz/openbmc_project/ipmi/sol/eth0 /xyz/openbmc_project/ipmi/sol/eth1
+    /xyz/openbmc_project/ipmi/sol/eth2
+    And with ipmi-host and ipmi-net patch, SOL Set/Get config parameter command
+    can work correctly.
+    
+    Change-Id: I5ab31c9ab30d8c212b061c9aa3205c8a6fd9fe23
+    Signed-off-by: Cheng C Yang <cheng.c.yang@intel.com>
+
+commit 3f862957a815054424b78ce626b329f6258bcb7a
+Author: Jason M. Bills <jason.m.bills@linux.intel.com>
+Date:   Tue Jun 25 11:31:22 2019 -0700
+
+    Add option for settings that do not persist
+    
+    This change adds a flag that allows a setting to not persist.
+    
+    Tested:
+    Verified that a setting that is set to not persist gets created
+    with the default value on each boot.
+    
+    Combined with the AC Boot parameter change, this makes the power
+    restore policy behave as expected.
+    
+    Change-Id: I0a8e8237864ab7ab315c0be6df23b424f0a1ccb3
+    Signed-off-by: Jason M. Bills <jason.m.bills@linux.intel.com>
+
+commit 88dfa922337890be7547e9e0ea9794b88537dcb8
+Author: Chen Yugang <yugang.chen@linux.intel.com>
+Date:   Fri Jun 21 17:04:54 2019 +0800
+
+    Add interface to NMI source Property
+    
+    System need to keep the NMI signal event source by this Property, this
+    interface to support the access the Property with default value.
+    
+    test
+    it's tested in system for IPMI OEM command - get/set NMI source
+    
+    Change-Id: I8e0c199efe1a12844abf57220ded5e2ac2a2c9a4
+    Signed-off-by: Chen,Yugang <yugang.chen@linux.intel.com>
+
+commit 41dff09942cbff39dd6f1f9692359a9a4c9ecbb7
+Author: James Feist <james.feist@linux.intel.com>
+Date:   Mon Jun 17 12:21:45 2019 -0700
+
+    Add restart cause setting
+    
+    This adds restart cause to settingsd
+    
+    Tested: was able to set it using watchdog timer
+    
+    Change-Id: Icc4b9b8734e2b7e87de6cd7068e7f99b87de3f98
+    Signed-off-by: James Feist <james.feist@linux.intel.com>
+
+commit 42a3a6a1a04398dc621623ba546a3962bab884b2
+Author: Feist, James <james.feist@linux.intel.com>
+Date:   Wed Jun 12 18:47:08 2019 -0700
+
+    Non-yaml Settingsd implementation
+    
+    This implements an asio based, non-yaml settingsd. This
+    should make it so we don't have to go through the process
+    of creating yaml anymore.
+    
+    Tested: Modifed thermal_mode setting and on reboot it
+    persisted
+    
+    Change-Id: Ie385064aa07838acb16ecd6cc86778d570d586cc
+    Signed-off-by: Feist, James <james.feist@linux.intel.com>
+
+commit 3bebfa534c038501344ce35073f00e3fffb95eeb
+Author: SCM Administrator <NoEmailShouldEverBeSentToSCMAdmin>
+Date:   Thu Mar 26 15:40:24 2020 -0700
+
+    Initial empty repository
