@@ -1,3 +1,14 @@
+commit f0d30a2c37ea0481bbdf2ca868703fe384e82724
+Author: Jason M. Bills <jason.m.bills@intel.com>
+Date:   Tue Aug 18 09:08:48 2026 -0600
+
+    Update minimum CMake version to 3.5 (#31)
+    
+    The latest upstream CMake version is no longer compatible with versions
+    earlier than 3.5, so update to fix the build.
+    
+    Signed-off-by: Jason M. Bills <jason.m.bills@intel.com>
+
 commit 7c8e1ef06aeb846af83b010ed7c877afd8dc0722
 Author: Jason M. Bills <jason.m.bills@intel.com>
 Date:   Mon Apr 13 12:49:04 2026 -0600
